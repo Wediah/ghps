@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
 {
-    protected $fillable = [
-        'user_id', 'name', 'description', 'location', 'latitude', 'longitude',
-        'contact_phone', 'contact_email', 'is_approved', 'image_url'
-    ];
+    protected $guarded = [];
 
     public function user()
     {
@@ -24,5 +21,10 @@ class Farm extends Model
     public function reviews()
     {
         return $this->hasMany(FarmReview::class);
+    }
+
+    public function media()
+    {
+        return $this->morphMany(Media::class, 'model');
     }
 }
